@@ -1,0 +1,11 @@
+keys:
+  - &netnax age18jyspc26tr6f674g3u286rdt0f2nghaxanx25t8av9qamq78legqc0pt6y 
+  - &nukebox age1gtc6pgpykpdrkm9jkmlf30zd64jwqpegshz695pe8eezyqjjedcqtphwe7
+
+creation_rules:
+  - path_regex: hosts/nukebox/secrets.yaml$
+    key_groups:
+    - age:
+      - *netnax
+      - *nukebox
+
