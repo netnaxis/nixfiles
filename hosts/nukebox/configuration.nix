@@ -6,6 +6,7 @@
     ./disko.nix
     ./services/vaultwarden.nix
     ./services/caddy.nix
+    ./services/wireguard.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -13,13 +14,20 @@
 
   networking.hostName = "nukebox";
 
-  networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 
-    22 #SSH
-    3389 # RDP
-    80 # http
-    443 # https
-  ];
+  networking.firewall = {
+    enable = true;
+
+    allowedTCPPorts = [ 
+      22 #SSH
+      3389 # RDP
+      80 # http
+      443 # https
+    ];
+
+    allowedUDPPorts = [
+      51820 # Wireguard
+    ];
+  };
 
   time.timeZone = "Europe/Kyiv";
 
