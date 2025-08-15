@@ -7,6 +7,8 @@
     ./services/vaultwarden.nix
     ./services/caddy.nix
     ./services/wireguard.nix
+    ./services/immich.nix
+    ./services/factorio.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -17,19 +19,39 @@
   networking.firewall = {
     enable = true;
 
-    allowedTCPPorts = [ 
-      22 #SSH
-      3389 # RDP
-      80 # http
-      443 # https
+    allowedUDPPorts = [
+      34197 # Factorio
     ];
 
-    allowedUDPPorts = [
-      51820 # Wireguard
-    ];
+    interfaces.enp3s0 = {
+      allowedTCPPorts = [ 
+        22 #SSH
+        3389 # RDP
+        80 # http
+        443 # https
+      ];
+
+      allowedUDPPorts = [
+        51820 # Wireguard
+      ];
+
+    };
+
+    interfaces.wg0 = {
+      allowedTCPPorts = [ ];
+      allowedUDPPorts = [ ];
+    };
   };
 
   time.timeZone = "Europe/Kyiv";
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+    ]; 
+  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
 
   programs.zsh.enable = true;
 

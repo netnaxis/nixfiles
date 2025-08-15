@@ -18,6 +18,7 @@
       Endpoint = ${config.sops.placeholder."wireguard/endpoint"}
       PersistentKeepalive = 25
     '';
+    restartUnits = [ "wg-quick-wg0.service" ];
   };
   networking.wg-quick.interfaces.wg0.configFile = config.sops.templates."wg0.conf".path;
 

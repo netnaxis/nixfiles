@@ -9,6 +9,7 @@
     '';
     owner = config.users.users.vaultwarden.name;
     group = config.users.groups.vaultwarden.name;
+    restartUnits = [ "vaultwarden.service" ];
   };
 
   services.vaultwarden = {
