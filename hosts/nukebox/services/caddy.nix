@@ -1,10 +1,11 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   sops.secrets."caddy/domain-w" = {};
   sops.secrets."caddy/cloudflare-token" = {};
   sops.secrets."caddy/vaultwarden-url" = {};
   sops.secrets."caddy/immich-url" = {};
+  sops.secrets."caddy/syncthing-url" = {};
 
   sops.templates."Caddyfile" = {
     content = ''
@@ -19,6 +20,9 @@
 
         @immich host ${config.sops.placeholder."caddy/immich-url"}
         reverse_proxy @immich http://${config.services.immich.host}:${toString config.services.immich.port}
+
+        @sync host ${config.sops.placeholder."caddy/syncthing-url"}
+        reverse_proxy @sync unix/${config.services.syncthing.guiAddress}
       }
     '';
     owner = config.services.caddy.user;

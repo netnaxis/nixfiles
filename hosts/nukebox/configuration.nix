@@ -9,6 +9,7 @@
     ./services/wireguard.nix
     ./services/immich.nix
     ./services/factorio.nix
+    ./services/syncthing.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -19,8 +20,14 @@
   networking.firewall = {
     enable = true;
 
+    allowedTCPPorts = [
+      22000 # Syncthing (transfer)
+    ];
+
     allowedUDPPorts = [
       34197 # Factorio
+      22000 # Syncthing (transfer)
+      21027 # Syncthing (discovery)
     ];
 
     interfaces.enp3s0 = {
