@@ -18,7 +18,7 @@
   sops.templates."factorio-secrets.json" = {
     content = ''
       {
-        "game-password": "${config.sops.placeholder."factorio/game-password"}"
+        "game_password": "${config.sops.placeholder."factorio/game-password"}"
       }
     '';
     owner = "factorio";
