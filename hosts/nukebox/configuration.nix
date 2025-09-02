@@ -10,6 +10,7 @@
     ./services/immich.nix
     ./services/factorio.nix
     ./services/syncthing.nix
+    ./services/tailscale.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -28,6 +29,7 @@
       34197 # Factorio
       22000 # Syncthing (transfer)
       21027 # Syncthing (discovery)
+      41641 # Tailscale
     ];
 
     interfaces.enp3s0 = {
@@ -104,6 +106,8 @@
     wget
     zsh
     sops
+    btop
+    fastfetch
   ];
 
   system.stateVersion = "25.05";
