@@ -35,7 +35,7 @@
       # Build Caddy with Cloudflare DNS plugin
       caddy-cloudflare = pkgs.caddy.withPlugins {
         plugins = [ "github.com/caddy-dns/cloudflare@v0.2.3" ];
-        hash = "sha256-mmkziFzEMBcdnCWCRiT3UyWPNbINbpd3KUJ0NMW632w=";
+        hash = "sha256-to0fhW7LWBocw1ccpPQ7e2nod7iJO9gkWZpjHsZDeu4=";
       };
     in
     {
